@@ -1,3 +1,51 @@
-<h2>Index</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body style="padding-top: 70px">
+    <div>
+     <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WebApplication1</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> 
 
-<p>Hello from our View Template!</p>
+    <div class="container">    
+        <form class="col-5" action="" method="get">
+            <div class="form-group row">
+            <label for="house-area" class="col-2 col-form-label">House area</label>
+            <div class="col-2">
+                <input class="form-control" value="1000" id="house-area">
+            </div>
+            </div>
+            <div class="form-group row">
+                <label for="build-year" class="col-2 col-form-label">Build year</label>
+                <div class="col-2">
+                    <input class="form-control" value="1989" id="build-year">
+                </div>
+            </div>
+            <button formaction="Submit" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

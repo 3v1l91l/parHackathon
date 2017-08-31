@@ -13,6 +13,23 @@ namespace src.Controllers
     [Route("/")]
     public class RootController : Controller
     {
+
+        [HttpGet("Submit")]
+        public void Submit()
+        {
+            // try
+            // {
+            //     int num1 = Convert.ToInt32(HttpContext.Request.Form["Text1"].ToString());
+            //     int num2 = Convert.ToInt32(HttpContext.Request.Form["Text2"].ToString());
+            //     ViewBag.Result = (num1 - num2).ToString();
+            // }
+            // catch (Exception)
+            // {
+            //     ViewBag.Result = "Wrong Input Provided.";
+            // }
+            // return View();
+        }
+
         // GET /
         [HttpGet("")]
         public IActionResult Index() {
