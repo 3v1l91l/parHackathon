@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Text;
+using src.Models;
 
 namespace src.Controllers
 {
@@ -15,19 +16,17 @@ namespace src.Controllers
     {
 
         [HttpPost("Submit")]
-        public void Submit()
+        public void Submit(Form model)
         {
             try
             {
-                int num1 = Convert.ToInt32(HttpContext.Request.Form["Text1"].ToString());
-                int num2 = Convert.ToInt32(HttpContext.Request.Form["Text2"].ToString());
-                ViewBag.Result = (num1 - num2).ToString();
+                Console.WriteLine($"Submitted house area: {model.houseArea}, build year: {model.buildYear}");
+              
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                ViewBag.Result = "Wrong Input Provided.";
+                Console.WriteLine(e);
             }
-            // return View();
         }
 
         // GET /
