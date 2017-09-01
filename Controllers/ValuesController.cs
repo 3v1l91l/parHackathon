@@ -14,280 +14,45 @@ namespace src.Controllers
     [Route("/")]
     public class RootController : Controller
     {
-
         [HttpPost("Submit")]
-        public void Submit(Form model)
+        public ActionResult Submit(Form model)
         {
+            string prediction = "";
             try
             {
                 Console.WriteLine($"Submitted house area: {model.houseArea}, build year: {model.buildYear}");
-              
+                prediction = Predict(model.houseArea, model.buildYear).Result;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+            ViewData["Prediction"]  = prediction;
+            return View("Submit");
         }
 
         // GET /
         [HttpGet("")]
         public IActionResult Index() {
-            // var msg = Predict();
-            // return new string[] { msg.Result };
             return View();
         }
-
-        static async Task<string> Predict() {
+        static async Task<string> Predict(int houseArea, int buildYear) {
             using (var client = new HttpClient())
             {
-                var scoreRequest = new
+                var scoreRequest = new 
                 {
                     Inputs = new Dictionary<string, List<Dictionary<string, string>>> () {
                         {
                             "input1",
                             new List<Dictionary<string, string>>(){new Dictionary<string, string>(){
                                             {
-                                                "Id", "1"
+                                                "LotArea", houseArea.ToString()
                                             },
                                             {
-                                                "MSSubClass", "1"
+                                                "YearBuilt", buildYear.ToString()
                                             },
                                             {
-                                                "MSZoning", ""
-                                            },
-                                            {
-                                                "LotFrontage", ""
-                                            },
-                                            {
-                                                "LotArea", "8450"
-                                            },
-                                            {
-                                                "Street", ""
-                                            },
-                                            {
-                                                "Alley", ""
-                                            },
-                                            {
-                                                "LotShape", ""
-                                            },
-                                            {
-                                                "LandContour", ""
-                                            },
-                                            {
-                                                "Utilities", ""
-                                            },
-                                            {
-                                                "LotConfig", ""
-                                            },
-                                            {
-                                                "LandSlope", ""
-                                            },
-                                            {
-                                                "Neighborhood", ""
-                                            },
-                                            {
-                                                "Condition1", ""
-                                            },
-                                            {
-                                                "Condition2", ""
-                                            },
-                                            {
-                                                "BldgType", ""
-                                            },
-                                            {
-                                                "HouseStyle", ""
-                                            },
-                                            {
-                                                "OverallQual", "1"
-                                            },
-                                            {
-                                                "OverallCond", "1"
-                                            },
-                                            {
-                                                "YearBuilt", "2003"
-                                            },
-                                            {
-                                                "YearRemodAdd", "1"
-                                            },
-                                            {
-                                                "RoofStyle", ""
-                                            },
-                                            {
-                                                "RoofMatl", ""
-                                            },
-                                            {
-                                                "Exterior1st", ""
-                                            },
-                                            {
-                                                "Exterior2nd", ""
-                                            },
-                                            {
-                                                "MasVnrType", ""
-                                            },
-                                            {
-                                                "MasVnrArea", ""
-                                            },
-                                            {
-                                                "ExterQual", ""
-                                            },
-                                            {
-                                                "ExterCond", ""
-                                            },
-                                            {
-                                                "Foundation", ""
-                                            },
-                                            {
-                                                "BsmtQual", ""
-                                            },
-                                            {
-                                                "BsmtCond", ""
-                                            },
-                                            {
-                                                "BsmtExposure", ""
-                                            },
-                                            {
-                                                "BsmtFinType1", ""
-                                            },
-                                            {
-                                                "BsmtFinSF1", "1"
-                                            },
-                                            {
-                                                "BsmtFinType2", ""
-                                            },
-                                            {
-                                                "BsmtFinSF2", "1"
-                                            },
-                                            {
-                                                "BsmtUnfSF", "1"
-                                            },
-                                            {
-                                                "TotalBsmtSF", "1"
-                                            },
-                                            {
-                                                "Heating", ""
-                                            },
-                                            {
-                                                "HeatingQC", ""
-                                            },
-                                            {
-                                                "CentralAir", ""
-                                            },
-                                            {
-                                                "Electrical", ""
-                                            },
-                                            {
-                                                "1stFlrSF", "1"
-                                            },
-                                            {
-                                                "2ndFlrSF", "1"
-                                            },
-                                            {
-                                                "LowQualFinSF", "1"
-                                            },
-                                            {
-                                                "GrLivArea", "1"
-                                            },
-                                            {
-                                                "BsmtFullBath", "1"
-                                            },
-                                            {
-                                                "BsmtHalfBath", "1"
-                                            },
-                                            {
-                                                "FullBath", "1"
-                                            },
-                                            {
-                                                "HalfBath", "1"
-                                            },
-                                            {
-                                                "BedroomAbvGr", "1"
-                                            },
-                                            {
-                                                "KitchenAbvGr", "1"
-                                            },
-                                            {
-                                                "KitchenQual", ""
-                                            },
-                                            {
-                                                "TotRmsAbvGrd", "1"
-                                            },
-                                            {
-                                                "Functional", ""
-                                            },
-                                            {
-                                                "Fireplaces", "1"
-                                            },
-                                            {
-                                                "FireplaceQu", ""
-                                            },
-                                            {
-                                                "GarageType", ""
-                                            },
-                                            {
-                                                "GarageYrBlt", ""
-                                            },
-                                            {
-                                                "GarageFinish", ""
-                                            },
-                                            {
-                                                "GarageCars", "1"
-                                            },
-                                            {
-                                                "GarageArea", "1"
-                                            },
-                                            {
-                                                "GarageQual", ""
-                                            },
-                                            {
-                                                "GarageCond", ""
-                                            },
-                                            {
-                                                "PavedDrive", ""
-                                            },
-                                            {
-                                                "WoodDeckSF", "1"
-                                            },
-                                            {
-                                                "OpenPorchSF", "1"
-                                            },
-                                            {
-                                                "EnclosedPorch", "1"
-                                            },
-                                            {
-                                                "3SsnPorch", "1"
-                                            },
-                                            {
-                                                "ScreenPorch", "1"
-                                            },
-                                            {
-                                                "PoolArea", "1"
-                                            },
-                                            {
-                                                "PoolQC", ""
-                                            },
-                                            {
-                                                "Fence", ""
-                                            },
-                                            {
-                                                "MiscFeature", ""
-                                            },
-                                            {
-                                                "MiscVal", "1"
-                                            },
-                                            {
-                                                "MoSold", "1"
-                                            },
-                                            {
-                                                "YrSold", "1"
-                                            },
-                                            {
-                                                "SaleType", ""
-                                            },
-                                            {
-                                                "SaleCondition", ""
-                                            },
-                                            {
-                                                "SalePrice", "1"
+                                                "SalePrice", "0"
                                             },
 
                                 }
@@ -307,53 +72,27 @@ namespace src.Controllers
                     .ConfigureAwait(false);
                 if (response.IsSuccessStatusCode)
                 {
-                    string result = await response.Content.ReadAsStringAsync();
-                    return result;
+                    string score = await response.Content.ReadAsStringAsync();
+                    Data z = JsonConvert.DeserializeObject<Data>(score);
+                
+                    double result;
+                    double.TryParse(z.Results.output1.First()["Scored Labels"].Replace('.', ','), out result);
+                    return String.Format("{0:0.00}", result);
                 }
                 else
                 {
-                    return string.Format("The request failed with status code: {0}", response.StatusCode);
+                    return "";
                 }
 
-                }
-        }
-    }
-
-    
-
-    [Route("api/[controller]")]
-    public class ValuesController : Controller
-    {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
+            }
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+        public class Data {
+                public Results Results { get; set; }
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+        public class Results {
+             public IEnumerable<IDictionary<string, string>> output1 { get; set; }
         }
     }
 }

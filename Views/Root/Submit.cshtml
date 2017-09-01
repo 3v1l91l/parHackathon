@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -17,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WebApplication1</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Estimate house price</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -26,26 +27,12 @@
             </div>
         </div>
     </div> 
-
-    <div class="container">    
-        <form class="col-5" action="Submit" method="POST">
-            <div class="form-group row">
-            <label for="house-area" class="col-2 col-form-label">House area</label>
-            <div class="col-2">
-                <input class="form-control" type="number" value="1000" id="houseArea" name="houseArea">
-            </div>
-            </div>
-            <div class="form-group row">
-                <label for="build-year" class="col-2 col-form-label">Build year</label>
-                <div class="col-2">
-                    <input class="form-control" type="number" value="1989" id="buildYear" name="buildYear">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+<h3>Predicted price: <span class="label label-default">@ViewData["Prediction"]</span></h3>
+    
 
 </div>
 
 </body>
 </html>
+
+
