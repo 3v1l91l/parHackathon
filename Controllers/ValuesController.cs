@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Text;
 using src.Models;
+using System.Globalization;
 
 namespace src.Controllers
 {
@@ -76,7 +77,7 @@ namespace src.Controllers
                     Data z = JsonConvert.DeserializeObject<Data>(score);
                 
                     double result;
-                    double.TryParse(z.Results.output1.First()["Scored Labels"].Replace('.', ','), out result);
+                    double.TryParse(z.Results.output1.First()["Scored Labels"], NumberStyles.Number, CultureInfo.CurrentCulture, out result);
                     return String.Format("{0:0.00}", result);
                 }
                 else
